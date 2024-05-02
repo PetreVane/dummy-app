@@ -11,11 +11,11 @@ import java.util.Map;
 public class Ec2Info
 {
 
-    private static  String BASE_URL = "http://169.254.169.254/latest";
-    private static String API_TOKEN = BASE_URL + "/api/token";
-    private static String META_DATA_URL = BASE_URL + "/meta-data";
-    private static String IP_ADDRESS_URL = META_DATA_URL + "/public-ipv4";
-    private static String AZ_URL = META_DATA_URL + "/placement/availability-zone";
+    private final static String BASE_URL = "http://169.254.169.254/latest";
+    private final static String API_TOKEN = BASE_URL + "/api/token";
+    private final static String META_DATA_URL = BASE_URL + "/meta-data";
+    private final static String IP_ADDRESS_URL = META_DATA_URL + "/public-ipv4";
+    private final static String AZ_URL = META_DATA_URL + "/placement/availability-zone";
 
 
     /*
