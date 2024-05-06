@@ -31,11 +31,11 @@ public class Ec2InfoView extends VerticalLayout {
         img.setWidth("200px");
         add(img);
 
-        ipLabel= new H3("The IP and AZ details will be filled in soon");
+        ipLabel= new H3("The IP and Availability Zone of the instance will be shown soon enough 🤗");
         ipLabel.addClassNames(Margin.Top.LARGE, Margin.Bottom.MEDIUM);
         add(ipLabel);
 
-        add(new Paragraph("Hopefully this will be filled with some actual information soon 🤗"));
+        add(new Paragraph("Refresh the page is no information is displayed 🤗"));
 
         setSizeFull();
         setJustifyContentMode(JustifyContentMode.CENTER);
