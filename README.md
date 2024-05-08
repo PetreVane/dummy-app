@@ -3,9 +3,15 @@
 # Dummy Vaadin EC2 Info Application
 
 This project is a dummy Vaadin application designed to run on an AWS EC2 instance. 
-It displays the public IP address and the availability zone of the EC2 instance hosting the application. 
-This dummy app was made to test some terraform and bash scripts which will create some aws infrastructure and then fetch the jar artifacts from a s3 bucket and then deploy it them on the EC2 instances.
-This is not useful for anything else other than testing. 
+
+This dummy app is used when testing infrastructure code via terraform. More precisely,
+this app jar is stored on a s3 bucket. A launch template contains a bash script, which gets the jar and starts the application.
+
+See [AWS Auto Scaling Infrastructure](https://github.com/PetreVane/tf-autoscaling-infrastructure) for more details.
+
+It displays the public IP address and the availability zone of the EC2 instance hosting the application, by making a asynchronous call to aws metadata endpoints. See `services/Ec2Info.java` and `views/Ec2infoView.java` if you're curious.
+
+This is not useful for anything else other than testing.
 
 ## Running the Application
 
