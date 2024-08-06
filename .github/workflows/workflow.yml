@@ -29,6 +29,12 @@ jobs:
       - name: Build with Maven
         run: ./mvnw clean package -Pproduction
 
+      - name: Debug Role Assumption
+        run: |
+          echo "Role ARN: ${{ env.AWS_ROLE_ARN }}"
+          echo "GitHub Actor: ${{ github.actor }}"
+          echo "GitHub Repository: ${{ github.repository }}"
+
       - name: Debug AWS config
         run: |
           aws sts get-caller-identity
