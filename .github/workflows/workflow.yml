@@ -29,6 +29,11 @@ jobs:
       - name: Build with Maven
         run: ./mvnw clean package -Pproduction
 
+      - name: Debug AWS config
+        run: |
+          aws sts get-caller-identity
+          aws configure list
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -36,14 +41,9 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/tf_github_actions_role-${{ secrets.AWS_REGION }}
           audience: sts.amazonaws.com
 
-      - name: Debug AWS config
-        run: |
-          aws sts get-caller-identity
-          aws configure list
-
       - name: Get AWS Region
         run: |
-          AWS_REGION=$(aws ssm get-parameter --name "/github-actions/region" --query "Parameter.Value" --output text)
+          AWS_REGION=$(aws ssm get-parameter --name "/github-actions/region" --query "Parameter.Value" --output text --region ${{ secrets.AWS_REGION }})
           echo "AWS_REGION=$AWS_REGION" >> $GITHUB_ENV
 
       - name: Get S3 Bucket Name
