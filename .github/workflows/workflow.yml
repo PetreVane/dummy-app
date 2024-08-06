@@ -29,6 +29,13 @@ jobs:
       - name: Build with Maven
         run: ./mvnw clean package -Pproduction
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/tf_github_actions_role-${{ secrets.AWS_REGION }}
+          audience: sts.amazonaws.com
+
       - name: Debug Role Assumption
         run: |
           echo "Role ARN: ${{ env.AWS_ROLE_ARN }}"
@@ -39,13 +46,6 @@ jobs:
         run: |
           aws sts get-caller-identity
           aws configure list
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/tf_github_actions_role-${{ secrets.AWS_REGION }}
-          audience: sts.amazonaws.com
 
       - name: Get AWS Region
         run: |
