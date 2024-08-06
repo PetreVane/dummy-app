@@ -36,6 +36,11 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/tf_github_actions_role-${{ secrets.AWS_REGION }}
           audience: sts.amazonaws.com
 
+      - name: Debug AWS config
+        run: |
+          aws sts get-caller-identity
+          aws configure list
+
       - name: Get AWS Region
         run: |
           AWS_REGION=$(aws ssm get-parameter --name "/github-actions/region" --query "Parameter.Value" --output text)
