@@ -23,6 +23,8 @@ public class Ec2Info
         Returns a map with the key "public_ip" and the value as the public IP address
         Throws an IOException if there is an error getting the IP address
 
+        Comment to trigger the workflow
+
      */
     public static Map<String, String> getPublicInfo() throws IOException, InterruptedException {
         Map<String, String> ec2Info = new HashMap<>();
