@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload artifact to S3 (Deploy)
         run: |
-          aws s3 cp target/*.jar s3://${{ env.S3_BUCKET_NAME }}/application/jar/${{ secrets.JAR_FILE_NAME }}
+          aws s3 cp target/*.jar s3://${{ env.S3_BUCKET_NAME }}/application/jar/
 
       - name: Deployment Confirmation
         run: |
